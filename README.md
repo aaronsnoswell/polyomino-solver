@@ -36,3 +36,13 @@ Gives the output;
 [[1. 3. 3.]
  [3. 3. 2.]]
 ```
+
+## Acknowlegements
+
+This package is simply a thin convenience wrapper around the amazing Matlab
+[Polyomino library](https://people.sc.fsu.edu/~jburkardt/m_src/polyominoes/polyominoes.html)
+provided free under GPL by John Burkardt at his website.
+Much thanks to him, and please see their paper describing the method at;
+
+ * Garvie, Marcus R., and John Burkardt. *"[A New Mathematical Model for Tiling Finite Regions of the Plane with Polyominoes](https://people.sc.fsu.edu/~jburkardt%20/publications/gb_2018.pdf)"*.
+
