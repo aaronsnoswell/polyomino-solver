@@ -1,0 +1,511 @@
+polyomino_multihedral_test
+05-Jun-2018 11:42:24
+
+POLYOMINO_MULTIHEDRAL_TEST:
+  MATLAB version
+  POLYOMINO_MULTIHEDRAL sets up an solves the linear system
+  associated with a multi-polyomino tiling problem.
+
+POLYOMINO_MULTIHEDRAL_TEST01:
+  POLYOMINO_MULTIHEDRAL must solve a multihedral polyomino
+  tiling problem for a 2x4 rectangle.
+
+  Region R:
+
+ 1 1 1 1
+ 1 1 1 1
+
+  Polyomino N:
+
+ 1
+
+  Polyomino O:
+
+ 1 1 1
+
+  Polyomino P:
+
+ 0 0 1
+ 1 1 1
+
+VERBOSE:
+  The internal variable "verbose" is set to "true";
+  Print statements marked "VERBOSE" can be suppressed
+  by setting "verbose" to "false".
+
+VERBOSE:
+POLYOMINO_MULTIHEDRAL:
+  Analyze the problem of tiling a region R using copies,
+  possibly rotated or reflected, of several polyominoes.
+
+VERBOSE:
+  Input R_SHAPE has shape (2,4).
+
+VERBOSE:
+  Input R_SHAPE is a binary matrix.
+
+VERBOSE:
+  Condensed R_SHAPE has shape (2,4).
+
+VERBOSE:
+  Input P(1) has shape (2,4).
+
+VERBOSE:
+  Input P(1) is a binary matrix.
+
+VERBOSE:
+  Condensed P(1) has shape (1,1).
+
+VERBOSE:
+  Input P(2) has shape (2,4).
+
+VERBOSE:
+  Input P(2) is a binary matrix.
+
+VERBOSE:
+  Condensed P(2) has shape (1,3).
+
+VERBOSE:
+  Input P(3) has shape (2,4).
+
+VERBOSE:
+  Input P(3) is a binary matrix.
+
+VERBOSE:
+  Condensed P(3) has shape (2,3).
+
+  System matrix A and right hand side B:
+
+   1 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0 1 0 1 0   1
+   0 1 0 0 0 0 0 0 1 1 0 0 0 0 1 1 0 1 1 1   1
+   0 0 1 0 0 0 0 0 1 1 0 0 1 0 1 1 0 0 1 1   1
+   0 0 0 1 0 0 0 0 0 1 0 0 0 1 0 1 0 0 0 1   1
+   0 0 0 0 1 0 0 0 0 0 1 0 1 0 1 0 1 0 0 0   1
+   0 0 0 0 0 1 0 0 0 0 1 1 1 1 0 1 1 1 0 0   1
+   0 0 0 0 0 0 1 0 0 0 1 1 1 1 0 0 1 1 1 0   1
+   0 0 0 0 0 0 0 1 0 0 0 1 0 1 0 0 0 1 0 1   1
+   1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0   1
+   0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0   1
+   0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1   1
+   1 1 1 1 1 1 1 1 3 3 3 3 4 4 4 4 4 4 4 4   8
+
+
+VERBOSE:
+  RREF has determinant = 4
+
+  13x20 Row-Reduced Echelon Form system matrix A and right hand side B:
+
+   1 0 0 0 0 0 0 0 0-1-1-1 0 0 1 0 1 0 1 0   0
+   0 1 0 0 0 0 0 0 0 0-1-1 0 0 1 1 0 1 1 1   0
+   0 0 1 0 0 0 0 0 0 0-1-1 0-1 0 0-1-1 0 0  -1
+   0 0 0 1 0 0 0 0 0 1 0 0 0 1 0 1 0 0 0 1   1
+   0 0 0 0 1 0 0 0 0 0 1 0 0-1 0-1 0-1-1-1   0
+   0 0 0 0 0 1 0 0 0 0 1 1 0 0-1 0 0 0-1-1   0
+   0 0 0 0 0 0 1 0 0 0 1 1 0 0-1-1 0 0 0-1   0
+   0 0 0 0 0 0 0 1 0 0 0 1 0 1 0 0 0 1 0 1   1
+   0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0   1
+   0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1   1
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   0
+
+VERBOSE:
+  Seek binary solutions with exactly 3 nonzeros
+
+VERBOSE:
+  System has 10 degrees of freedom.
+
+VERBOSE:
+  Augmented Row-Reduced Echelon Form system matrix A and right hand side B:
+  Columns associated with a free variable are headed with a "*"
+
+   : : : : : : : : : * * * : * * * * * * *
+   1 0 0 0 0 0 0 0 0-1-1-1 0 0 1 0 1 0 1 0   0
+   0 1 0 0 0 0 0 0 0 0-1-1 0 0 1 1 0 1 1 1   0
+   0 0 1 0 0 0 0 0 0 0-1-1 0-1 0 0-1-1 0 0  -1
+   0 0 0 1 0 0 0 0 0 1 0 0 0 1 0 1 0 0 0 1   1
+   0 0 0 0 1 0 0 0 0 0 1 0 0-1 0-1 0-1-1-1   0
+   0 0 0 0 0 1 0 0 0 0 1 1 0 0-1 0 0 0-1-1   0
+   0 0 0 0 0 0 1 0 0 0 1 1 0 0-1-1 0 0 0-1   0
+   0 0 0 0 0 0 0 1 0 0 0 1 0 1 0 0 0 1 0 1   1
+   0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0   1
+   0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1   1
+   0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1   0
+
+VERBOSE:
+  Tried 176 right hands sides, found 4 solutions.
+
+  4 binary solutions were found.
+
+  Binary solution vectors x:
+
+   0 0 0 1
+   0 0 0 0
+   0 0 0 0
+   0 1 0 0
+   1 0 0 0
+   0 0 0 0
+   0 0 0 0
+   0 0 1 0
+   1 0 0 0
+   0 0 1 0
+   0 0 0 1
+   0 1 0 0
+   0 0 0 0
+   1 0 0 0
+   0 1 0 0
+   0 0 0 0
+   0 0 1 0
+   0 0 0 0
+   0 0 0 0
+   0 0 0 1
+
+  Check residuals ||Ax-b||:
+
+
+ans =
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+
+ans =
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+
+ans =
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+
+ans =
+
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+     0
+
+  All solutions had zero residual.
+
+  Translate each correct solution into a tiling:
+
+  Tiling based on solution 1
+
+  9  9  9 14
+  5 14 14 14
+
+  Tiling based on solution 2
+
+ 15 15 15  4
+ 15 12 12 12
+
+  Tiling based on solution 3
+
+ 17 10 10 10
+ 17 17 17  8
+
+  Tiling based on solution 4
+
+  1 20 20 20
+ 11 11 11 20
+
+POLYOMINO_MULTIHEDRAL_TEST02:
+  POLYOMINO_MULTIHEDRAL must solve a multihedral polyomino
+  tiling problem for a subset of a 4x4 rectangle.
+
+  Region R:
+
+ 1 0 0 0
+ 1 0 0 0
+ 1 1 1 1
+ 1 1 1 1
+
+  Polyomino N:
+
+ 0 0 1
+ 1 1 1
+
+  Polyomino O:
+
+ 1 1 1
+
+  Polyomino P:
+
+ 0 1
+ 1 1
+
+VERBOSE:
+  The internal variable "verbose" is set to "true";
+  Print statements marked "VERBOSE" can be suppressed
+  by setting "verbose" to "false".
+
+VERBOSE:
+POLYOMINO_MULTIHEDRAL:
+  Analyze the problem of tiling a region R using copies,
+  possibly rotated or reflected, of several polyominoes.
+
+VERBOSE:
+  Input R_SHAPE has shape (4,4).
+
+VERBOSE:
+  Input R_SHAPE is a binary matrix.
+
+VERBOSE:
+  Condensed R_SHAPE has shape (4,4).
+
+VERBOSE:
+  Input P(1) has shape (4,4).
+
+VERBOSE:
+  Input P(1) is a binary matrix.
+
+VERBOSE:
+  Condensed P(1) has shape (2,3).
+
+VERBOSE:
+  Input P(2) has shape (4,4).
+
+VERBOSE:
+  Input P(2) is a binary matrix.
+
+VERBOSE:
+  Condensed P(2) has shape (1,3).
+
+VERBOSE:
+  Input P(3) has shape (4,4).
+
+VERBOSE:
+  Input P(3) is a binary matrix.
+
+VERBOSE:
+  Condensed P(3) has shape (2,2).
+
+  System matrix A and right hand side B:
+
+   0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0   1
+   0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 1 0 0 0   1
+   0 0 1 0 1 1 1 1 0 1 0 1 0 0 0 1 1 0 0 0 1 0 0 1 0 0 1 1 0 0   1
+   0 0 1 1 1 0 1 0 1 1 1 1 1 0 0 0 0 1 0 0 1 1 0 1 1 0 1 0 1 0   1
+   1 0 1 1 0 0 1 0 0 1 1 1 1 0 0 0 0 0 1 0 0 1 1 0 1 1 0 0 0 1   1
+   0 1 0 1 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 1 0 0 1 0 0 1 0 0 0 0   1
+   1 0 1 0 0 1 0 1 0 0 0 0 0 1 0 0 1 1 0 0 0 0 0 1 0 0 0 1 0 0   1
+   1 1 0 1 0 1 0 1 1 0 0 0 0 1 1 0 0 1 1 0 1 0 0 0 1 0 0 1 1 0   1
+   1 1 0 0 0 0 0 1 1 1 0 0 0 1 1 0 0 0 1 1 0 1 0 0 0 1 0 0 1 1   1
+   0 1 0 0 0 0 0 0 1 0 1 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 0 0 1   1
+   1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   1
+   0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0   1
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1   1
+   4 4 4 4 4 4 4 4 4 4 4 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3  10
+
+
+VERBOSE:
+  RREF has determinant = -6
+
+  15x30 Row-Reduced Echelon Form system matrix A and right hand side B:
+
+   1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 1 0-1 1 1-1 1 1-1 0 0 1   1
+   0 1 0 0 0 0 0 0 0 0 1 0 0-1 1 1 0 0 1 2 1 1 3 1 1 2 1 1 0 2   2
+   0 0 1 0 0 0 0 0 0 0 1 0 0-1-1-1 0 0-1 0-1-1 1 1-1-1-1 0-1 0   0
+   0 0 0 1 0 0 0 0 0 0 0 0 0-1-1-1-1 0 0-1 1-1-1-1 1-1-1 0 0-1  -1
+   0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0   1
+   0 0 0 0 0 1 0 0 0-1 0 0 0 1 1 1 1 0-1-1-1-2-1-1-1-2-1 0-1-1   0
+   0 0 0 0 0 0 1 0 0 1 0 0 0-1-1-1 0 0 1 1 1 2 1 1 1 2 2 0 1 1   0
+   0 0 0 0 0 0 0 1 0 1-1 0 0 1-1-1 0 0 0 0 1 1-2 1-1 1 1 0 1-1  -1
+   0 0 0 0 0 0 0 0 1 0 0 0 0 1 1-1 0 0-1-1-1-1-2-1-1-2-1-1 0-1  -1
+   0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 0 1 0 1 0 1 0 1 0 0 1 0 1   1
+   0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 1 0-1 0-1 0-1 0-1 0 0-1 0-1   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1   1
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   0
+
+VERBOSE:
+  Seek binary solutions with exactly 3 nonzeros
+
+VERBOSE:
+  System has 18 degrees of freedom.
+
+VERBOSE:
+  Augmented Row-Reduced Echelon Form system matrix A and right hand side B:
+  Columns associated with a free variable are headed with a "*"
+
+   : : : : : : : : : * * : : * * * * : * * * * * * * * * * * *
+   1 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 1 0-1 1 1-1 1 1-1 0 0 1   1
+   0 1 0 0 0 0 0 0 0 0 1 0 0-1 1 1 0 0 1 2 1 1 3 1 1 2 1 1 0 2   2
+   0 0 1 0 0 0 0 0 0 0 1 0 0-1-1-1 0 0-1 0-1-1 1 1-1-1-1 0-1 0   0
+   0 0 0 1 0 0 0 0 0 0 0 0 0-1-1-1-1 0 0-1 1-1-1-1 1-1-1 0 0-1  -1
+   0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0   1
+   0 0 0 0 0 1 0 0 0-1 0 0 0 1 1 1 1 0-1-1-1-2-1-1-1-2-1 0-1-1   0
+   0 0 0 0 0 0 1 0 0 1 0 0 0-1-1-1 0 0 1 1 1 2 1 1 1 2 2 0 1 1   0
+   0 0 0 0 0 0 0 1 0 1-1 0 0 1-1-1 0 0 0 0 1 1-2 1-1 1 1 0 1-1  -1
+   0 0 0 0 0 0 0 0 1 0 0 0 0 1 1-1 0 0-1-1-1-1-2-1-1-2-1-1 0-1  -1
+   0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 1 0 0 1 0 1 0 1 0 1 0 0 1 0 1   1
+   0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 1 0-1 0-1 0-1 0-1 0 0-1 0-1   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1   1
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0   0
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1   0
+
+VERBOSE:
+  Tried 988 right hands sides, found 2 solutions.
+
+  2 binary solutions were found.
+
+  Binary solution vectors x:
+
+   0 0
+   0 0
+   0 1
+   0 0
+   0 0
+   0 0
+   0 0
+   0 0
+   0 0
+   1 0
+   1 1
+   0 0
+   0 0
+   0 0
+   0 0
+   1 1
+   0 0
+   1 0
+   0 0
+   0 0
+   0 0
+   0 0
+   0 0
+   0 0
+   0 0
+   0 0
+   0 0
+   0 0
+   0 1
+   0 0
+
+  Check residuals ||Ax-b||:
+
+
+ans =
+
+     0
+     0
+     1
+     2
+     1
+     0
+     0
+     0
+     0
+     0
+     1
+     0
+     0
+     4
+
+  Solution vector 1 has a nonzero residual of 4
+
+ans =
+
+     0
+     0
+     1
+     2
+     1
+     0
+     0
+     0
+     0
+     0
+     1
+     0
+     0
+     4
+
+  Solution vector 2 has a nonzero residual of 4
+
+  Translate each correct solution into a tiling:
+
+  Tiling based on solution 1
+
+ 16         
+ 16         
+ 26 39 21 11
+ 18 18 10 11
+
+  Tiling based on solution 2
+
+ 16         
+ 16         
+ 19 43 14 11
+  3 29 29 11
+
+POLYOMINO_MULTIHEDRAL_TEST:
+  Normal end of execution.
+
+05-Jun-2018 11:42:24
+exit
