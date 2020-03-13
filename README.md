@@ -1,6 +1,6 @@
 # polyomino-solver
 
-Find multihedral tilings of patterns using Polyominoes.
+Find all multihedral tilings of an arbitrary pattern using free [Polyominoes](https://en.wikipedia.org/wiki/Polyomino).
 
 ## Installation
 
@@ -37,7 +37,7 @@ Gives the output;
  [3. 3. 2.]]
 ```
 
-## Acknowlegements
+## Acknowledgements
 
 This package is simply a thin convenience wrapper around the amazing Matlab
 [Polyomino library](https://people.sc.fsu.edu/~jburkardt/m_src/polyominoes/polyominoes.html)
@@ -46,3 +46,7 @@ Much thanks to him, and please see their paper describing the method at;
 
  * Garvie, Marcus R., and John Burkardt. *"[A New Mathematical Model for Tiling Finite Regions of the Plane with Polyominoes](https://people.sc.fsu.edu/~jburkardt%20/publications/gb_2018.pdf)"*.
 
+Also thanks to the following;
+
+ * [P. Todd Decker](https://www.boardgamegeek.com/user/ptdecker) from
+   BoardGameGeek for the [Polyomino reference PDF](https://www.boardgamegeek.com/filepage/15838/blokus-refpdf).
