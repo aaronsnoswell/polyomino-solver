@@ -230,6 +230,38 @@ def multihedral_tile(
     return solutions
 
 
+def discard_spatial(solutions):
+    """Discard spatial information, converting solutions to histogram vectors
+    
+    Args:
+        solutions: Nx2 List of label, color arrays for each solution
+    
+    Returns:
+        (numpy array): Nx21 matrix of histogram count vectors, one for each
+            solution
+    """
+    
+    # Compute sizes of polyominoes
+    _data = scipy.io.loadmat(
+        os.path.join(SOLVER_PATH, 'polyominoes-1to5.mat')
+    )
+    p_shapes = _data['p_shapes']
+    p_sizes = np.squeeze(np.sum(np.sum(p_shapes, 0), 0))
+    
+    counts = []
+    for i, (c, l) in enumerate(solutions):
+        # Count how many times each Polyomino occured
+        counts.append(np.array(
+            np.histogram(
+                c.flatten(),
+                bins=np.arange(0.5, len(p_sizes) + 1.5, 1)
+            )[0] / p_sizes,
+            dtype=int
+        ))
+    
+    return np.array(counts, dtype=int)
+
+
 def main():
     """Demonstrate the function"""
     

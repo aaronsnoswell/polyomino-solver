@@ -6,4 +6,5 @@ from polyomino_solver.polyomino import (
     TETROMINOES,
     PENTOMINOES,
     multihedral_tile,
+    discard_spatial
 )
