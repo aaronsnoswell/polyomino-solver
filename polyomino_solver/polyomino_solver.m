@@ -1,13 +1,11 @@
 
-function polyomino_solver(r_shape, p_ind)
+function polyomino_solver(r_shape, d_mat)
     % Solve a Polyomino multihedral tiling problem
     % r_shape is a binary array defining the desired shape
-    % p_ind is an optional list of indices to restrict the set of polyominos
-    %       (refer to ../blokus_polyominoes.pdf for a listing of the indices)
+    % d_mat A matrix where rows specify counts of polyominoes to try
+    %     (refer to ../blokus_polyominoes.pdf for a listing of the indices)
 
     addpath("polyomino_multihedral");
-    addpath("cartprod");
-    addpath("ind2subVect");
 
     % Covert to logical format if it isn't
     r_shape = logical(r_shape);
@@ -44,29 +42,11 @@ function polyomino_solver(r_shape, p_ind)
     filename = "_tmp_polyomino.lp";
     comment = "Multihedral Polyomino tiling problem";
 
-    % How many times should each Polyomino be used?
-    % d = [2, 1, 0, 0];
-
-    % Find permutations of p_shapes with valid numbers of cells
-    poly_sizes = squeeze(sum(sum(p_shapes)));
-    r_size = sum(r_shape, 'all');
-    max_repeats = idivide(r_size, int32(poly_sizes))';
-    ranges = cell(1, length(max_repeats));
-    for mr_ind = 1:length(max_repeats)
-        ranges{mr_ind} = 0:max_repeats(mr_ind);
-    end
-
-    counts = cartprod(ranges{:});
-    for d_ind = 1:length(counts)
-        d = counts(d_ind, :);
-
-        % Skip any permutation that won't have the right number of cells
-        if d * poly_sizes ~= r_size
-            continue;
-        end
-
-        fprintf('Got permutation: %s\n', num2str(d));
-
+    % Iterate through the specified matrix of tile count vectors
+    for d_ind = 1:size(d_mat, 1)
+        d = d_mat(d_ind, :);
+        
+        fprintf('Solving for d=[%s]\n', num2str(d));
         [m, n, x_num, a, b, x] = polyomino_multihedral(...
             r_shape,...
             p_num,...
