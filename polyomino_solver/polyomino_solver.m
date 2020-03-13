@@ -13,39 +13,30 @@ function polyomino_solver(r_shape, p_ind)
     r_shape = logical(r_shape);
 
     % Define the 1-5 Polyomino set
-    p_shapes              = [1 0 0; 0 0 0; 0 0 0; 0 0 0; 0 0 0];         % Monomino                     (1)
-
-    p_shapes(:, :, end+1) = [1 0 0; 1 0 0; 0 0 0; 0 0 0; 0 0 0];         % Domino                       (2)
-
-    p_shapes(:, :, end+1) = [1 0 0; 1 0 0; 1 0 0; 0 0 0; 0 0 0];         % Straight Tromino             (3)
-    p_shapes(:, :, end+1) = [1 1 0; 1 0 0; 0 0 0; 0 0 0; 0 0 0];         % L Tromino                    (4)
-
-    p_shapes(:, :, end+1) = [1 0 0; 1 0 0; 1 0 0; 1 0 0; 0 0 0];         % Straight Tetromino           (5)
-    p_shapes(:, :, end+1) = [1 1 0; 1 0 0; 1 0 0; 0 0 0; 0 0 0];         % L Tetromino                  (6)
-    p_shapes(:, :, end+1) = [1 0 0; 1 1 0; 1 0 0; 0 0 0; 0 0 0];         % T Tetromino                  (7)
-    p_shapes(:, :, end+1) = [1 1 0; 1 1 0; 0 0 0; 0 0 0; 0 0 0];         % Square Tetromino             (8)
-    p_shapes(:, :, end+1) = [1 1 0; 0 1 1; 0 0 0; 0 0 0; 0 0 0];         % Shear Tetromino              (9)
-
-    p_shapes(:, :, end+1) = [1 0 0; 1 0 0; 1 0 0; 1 0 0; 1 0 0];         % Straight Pentomino           (10)
-    p_shapes(:, :, end+1) = [1 1 0; 1 0 0; 1 0 0; 1 0 0; 0 0 0];         % l Pentomino                  (11)
-    p_shapes(:, :, end+1) = [1 0 0; 1 0 0; 1 1 0; 0 1 0; 0 0 0];         % Shear Pentomino              (12)
-    p_shapes(:, :, end+1) = [1 0 0; 1 1 0; 1 1 0; 0 0 0; 0 0 0];         % Square with bump Pentomino   (13)
-    p_shapes(:, :, end+1) = [1 1 0; 1 0 0; 1 1 0; 0 0 0; 0 0 0];         % C Pentomino                  (14)
-    p_shapes(:, :, end+1) = [1 0 0; 1 1 0; 1 0 0; 1 0 0; 0 0 0];         % r Pentomino                  (15)
-    p_shapes(:, :, end+1) = [1 1 1; 0 1 0; 0 1 0; 0 0 0; 0 0 0];         % T Pentomino                  (16)
-    p_shapes(:, :, end+1) = [1 0 0; 1 0 0; 1 1 1; 0 0 0; 0 0 0];         % L Pentomino                  (17)
-    p_shapes(:, :, end+1) = [1 1 0; 0 1 1; 0 0 1; 0 0 0; 0 0 0];         % M Pentomino                  (18)
-    p_shapes(:, :, end+1) = [1 0 0; 1 1 1; 0 0 1; 0 0 0; 0 0 0];         % S Pentomino                  (19)
-    p_shapes(:, :, end+1) = [1 0 0; 1 1 1; 0 1 0; 0 0 0; 0 0 0];         % T with bump Pentomino        (20)
-    p_shapes(:, :, end+1) = [0 1 0; 1 1 1; 0 1 0; 0 0 0; 0 0 0];         % + Pentomino                  (21)
-
-    p_shapes = logical(p_shapes);
-
-    % Restrict available shapes
-    if nargin == 2
-        p_shapes = p_shapes(:, :, p_ind);
-    end
-
+    % p_shapes              = [1 0 0; 0 0 0; 0 0 0; 0 0 0; 0 0 0];         % Monomino                     (1)
+    % p_shapes(:, :, end+1) = [1 0 0; 1 0 0; 0 0 0; 0 0 0; 0 0 0];         % Domino                       (2)
+    % p_shapes(:, :, end+1) = [1 0 0; 1 0 0; 1 0 0; 0 0 0; 0 0 0];         % Straight Tromino             (3)
+    % p_shapes(:, :, end+1) = [1 1 0; 1 0 0; 0 0 0; 0 0 0; 0 0 0];         % L Tromino                    (4)
+    % p_shapes(:, :, end+1) = [1 0 0; 1 0 0; 1 0 0; 1 0 0; 0 0 0];         % Straight Tetromino           (5)
+    % p_shapes(:, :, end+1) = [1 1 0; 1 0 0; 1 0 0; 0 0 0; 0 0 0];         % L Tetromino                  (6)
+    % p_shapes(:, :, end+1) = [1 0 0; 1 1 0; 1 0 0; 0 0 0; 0 0 0];         % T Tetromino                  (7)
+    % p_shapes(:, :, end+1) = [1 1 0; 1 1 0; 0 0 0; 0 0 0; 0 0 0];         % Square Tetromino             (8)
+    % p_shapes(:, :, end+1) = [1 1 0; 0 1 1; 0 0 0; 0 0 0; 0 0 0];         % Shear Tetromino              (9)
+    % p_shapes(:, :, end+1) = [1 0 0; 1 0 0; 1 0 0; 1 0 0; 1 0 0];         % Straight Pentomino           (10)
+    % p_shapes(:, :, end+1) = [1 1 0; 1 0 0; 1 0 0; 1 0 0; 0 0 0];         % l Pentomino                  (11)
+    % p_shapes(:, :, end+1) = [1 0 0; 1 0 0; 1 1 0; 0 1 0; 0 0 0];         % Shear Pentomino              (12)
+    % p_shapes(:, :, end+1) = [1 0 0; 1 1 0; 1 1 0; 0 0 0; 0 0 0];         % Square with bump Pentomino   (13)
+    % p_shapes(:, :, end+1) = [1 1 0; 1 0 0; 1 1 0; 0 0 0; 0 0 0];         % C Pentomino                  (14)
+    % p_shapes(:, :, end+1) = [1 0 0; 1 1 0; 1 0 0; 1 0 0; 0 0 0];         % r Pentomino                  (15)
+    % p_shapes(:, :, end+1) = [1 1 1; 0 1 0; 0 1 0; 0 0 0; 0 0 0];         % T Pentomino                  (16)
+    % p_shapes(:, :, end+1) = [1 0 0; 1 0 0; 1 1 1; 0 0 0; 0 0 0];         % L Pentomino                  (17)
+    % p_shapes(:, :, end+1) = [1 1 0; 0 1 1; 0 0 1; 0 0 0; 0 0 0];         % M Pentomino                  (18)
+    % p_shapes(:, :, end+1) = [1 0 0; 1 1 1; 0 0 1; 0 0 0; 0 0 0];         % S Pentomino                  (19)
+    % p_shapes(:, :, end+1) = [1 0 0; 1 1 1; 0 1 0; 0 0 0; 0 0 0];         % T with bump Pentomino        (20)
+    % p_shapes(:, :, end+1) = [0 1 0; 1 1 1; 0 1 0; 0 0 0; 0 0 0];         % + Pentomino                  (21)
+    % p_shapes = logical(p_shapes);
+    load('polyominoes-1to5.mat', 'p_shapes');
+    
     % Number of polyominoes available
     p_num = size(p_shapes, 3);
 
