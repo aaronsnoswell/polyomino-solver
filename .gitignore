@@ -136,3 +136,4 @@ dmypy.json
 
 .idea/
 polyomino_solver/_tmp_polyomino.lp
+polyomino_solver/polyomino_multihedral/_tmp_polyomino.lp
