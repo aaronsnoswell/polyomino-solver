@@ -128,7 +128,6 @@ def multihedral_tile(
                 "len(max_tile_repeat) must match number of entries in p_shapes"
             max_tile_repeat = np.array(max_tile_repeat, dtype=int)
     
-    print("# ============================================== #")
     print("Solving Multihedral tiling for")
     print(target_shape)
     print("Using Polyominoes: {}".format(polyomino_set))
@@ -188,7 +187,7 @@ def multihedral_tile(
         num_permutations - num_skipped
     ))
     if verbose:
-        with np.printoptions(linewidth=None):
+        with np.printoptions(linewidth=999999999, threshold=999999999):
             print(valid_count_mat)
     
     # Construct the solver command
@@ -198,6 +197,8 @@ def multihedral_tile(
     )
 
     # Call Polyomino solver script with arguments
+    print("Running solver command:")
+    print(SOLVER_COMMAND)
     solver_output = subprocess.check_output(
         args=[
             MATLAB_PATH,
@@ -248,18 +249,40 @@ def discard_spatial(solutions):
     p_shapes = _data['p_shapes']
     p_sizes = np.squeeze(np.sum(np.sum(p_shapes, 0), 0))
     
+    bins = np.arange(0.5, len(p_sizes) + 1.5, 1)
     counts = []
     for i, (c, l) in enumerate(solutions):
         # Count how many times each Polyomino occured
         counts.append(np.array(
             np.histogram(
                 c.flatten(),
-                bins=np.arange(0.5, len(p_sizes) + 1.5, 1)
-            )[0] / p_sizes,
-            dtype=int
+                bins=bins
+            )[0] / p_sizes
         ))
     
-    return np.array(counts, dtype=int)
+    counts = np.array(counts, dtype=int)
+    
+    return counts
+
+
+def unique_solution_ids(solutions):
+    """Get the IDs of solutions that use unique sets of tiles
+    
+    Args:
+        solutions: Nx2 List of label, color arrays for each solution
+    
+    Returns:
+        (list): List of the IDs of solutions that are unique in their tile usage
+    """
+    hist = discard_spatial(solutions)
+    unique_solns = np.unique(hist, axis=0)
+    unique_solution_ids = []
+    for unique_soln in unique_solns:
+        for idx in range(len(hist)):
+            if np.all(hist[idx] == unique_soln):
+                unique_solution_ids.append(idx)
+                break
+    return unique_solution_ids
 
 
 def main():
@@ -267,14 +290,14 @@ def main():
     
     # Tile the 2x3 rectangle with combinations of Polyominoes 1 to 9
     target_shape = np.ones((2, 3))
-    sols = multihedral_tile(
+    solutions = multihedral_tile(
         target_shape,
-        polyomino_set=MONOMINOES + DOMINOES + TROMINOES,# + TETROMINOES,
+        polyomino_set=MONOMINOES + DOMINOES + TROMINOES + TETROMINOES,
         verbose=True
     )
     
-    print("Found {} solutions".format(len(sols)))
-    for i, (c, l) in enumerate(sols):
+    print("Found {} solutions".format(len(solutions)))
+    for i, (c, l) in enumerate(solutions):
         print(l)
 
 
