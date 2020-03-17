@@ -229,7 +229,7 @@ function [ m, n, x_num, a, b, x ] = polyomino_multihedral ( r_shape, p_num, ...
 %
 %  H: Verify that solutions are correct.
 %
-  check = zeros ( x_num, 1 );
+  check1 = zeros ( x_num, 1 );
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Check Loo residuals ||Ax-b||:\n' );
@@ -238,9 +238,9 @@ function [ m, n, x_num, a, b, x ] = polyomino_multihedral ( r_shape, p_num, ...
   resid_max = 0.0;
   for j = 1 : x_num
     resid = max ( abs ( ax(:,j) - b(:) ) );
-    check(j) = ( resid == 0 );
+    check1(j) = ( resid == 0 );
     resid_max = max ( resid_max, resid );
-    if ( ~ check(j) )
+    if ( ~ check1(j) )
       fprintf ( 1, '  Solution vector %d has a nonzero Loo residual of %g\n', j, resid );
     end
   end
@@ -251,18 +251,18 @@ function [ m, n, x_num, a, b, x ] = polyomino_multihedral ( r_shape, p_num, ...
 %
 %  H2: Verify that solutions are correct.
 %
-  check = zeros ( x_num, 1 );
+  check2 = zeros ( x_num, 1 );
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  Check Loo residuals ||Ax-b||:\n' );
+  fprintf ( 1, '  Check Loo residuals ||A_rrefx-b||:\n' );
   fprintf ( 1, '\n' );
   ax = a_rref * x;
   resid_max = 0.0;
   for j = 1 : x_num
     resid = max ( abs ( ax(:,j) - b_rref(:) ) );
-    check(j) = ( resid == 0 );
+    check2(j) = ( resid == 0 );
     resid_max = max ( resid_max, resid );
-    if ( ~ check(j) )
+    if ( ~ check2(j) )
       fprintf ( 1, ...
         '  Solution vector %d has a nonzero Loo residual of %g\n', j, resid );
     end
@@ -272,7 +272,7 @@ function [ m, n, x_num, a, b, x ] = polyomino_multihedral ( r_shape, p_num, ...
     fprintf ( 1, '  All solutions had zero residual.\n' );
   end
 
-  if ( sum ( check ) == 0 )
+  if ( sum ( check1 ) + sum ( check2 ) == 0 )
     return
   end
 %
@@ -282,7 +282,7 @@ function [ m, n, x_num, a, b, x ] = polyomino_multihedral ( r_shape, p_num, ...
   fprintf ( 1, '  Translate each correct solution into a tiling:\n' );
 
   for j = 1 : x_num
-    if ( check(j) )
+    if ( check1(j) && check2(j) )
       label = sprintf ( '  Tiling based on solution %d', j );
       polyomino_multihedral_tiling_print ( r_shape, p_num, p_shapes, d, ...
         x(:,j), label );
